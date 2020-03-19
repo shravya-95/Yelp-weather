@@ -12,9 +12,9 @@ from cassandra.cluster import Cluster
 import os
 
 def get_file(year):    
-    ACCESS_KEY="ASIAXB57SYSJBGW44H5S"
-    SECRET_KEY="VjvPJIF13R8kC00n8yZbLs4LNxrC6bZddwygdzp2"
-    SESSION_TOKEN="FwoGZXIvYXdzENv//////////wEaDBR7+U4bjycY24/ebCK/AXxaTW4J5/c1K7Qkej4XP3/J/HDPZiReoWYyJFNqmTc4lbt4yzQFDAS2v8RBAMcP2Lts2KtpJ2xfCuWC3VN9gQkh0fVItqZ6YPFYnnVCoUHQdoDqg5mXayW68LDNEnJBhsr8JoyiOGN1jHQhIA44xQzuyLskl6dS3z/hdSVwMCBQB30B4zXh88QJ0cKWil7cdhRnRXdy6vAf9KaG0E0UVnul2VtNAF64ZQlR+3FwJ6Fbqhv5BykTqFQrBHzklBlCKIX+xfMFMi1lfeNIy7hOSjbWLSEL6juGwZi/OD3KsGMfjy2dQBbFNiSsW502XdnIF3cB3NQ="
+    ACCESS_KEY=""
+    SECRET_KEY=""
+    SESSION_TOKEN=""
     session = boto3.Session(    
         aws_access_key_id=ACCESS_KEY,
         aws_secret_access_key=SECRET_KEY,
