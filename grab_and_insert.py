@@ -4,7 +4,7 @@ Spyder Editor
 
 This is a temporary script file.
 """
-
+import get_codes from get_codes
 import boto3 
 import botocore
 import pandas as pd
@@ -59,13 +59,7 @@ def grab_row_and_insert2(file,codes,session):
                     day=day[:4]+"-"+day[4:6]+"-"+day[6:]
                     session.execute(upsert.format('R',r[0],day))
     os.remove(file)
-def get_codes(file):
-    codes={}
-    with open(file) as fp:
-        for line in fp:
-            line=line.split(",")
-            codes[line[0]]=True
-    return codes
+
 
 cluster = Cluster()
 session = cluster.connect('bigdata')
