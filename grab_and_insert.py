@@ -4,7 +4,8 @@ Spyder Editor
 
 This is a temporary script file.
 """
-import get_codes from get_codes
+from get_codes import get_codes
+from grab_row_and_insert import grab_row_and_insert
 import boto3 
 import botocore
 import pandas as pd
@@ -32,33 +33,6 @@ def get_file(year):
         else:
             raise
     return year+'.csv'
-
-def grab_row_and_insert(file,codes,session):
-    upsert="UPDATE day_cat SET cat = '{}' WHERE code='{}' AND day='{}'"
-    cols=["code","date","tag","value","gar1","gar2","gar3","gar4"]
-    for df in pd.read_csv(file, names=cols,header = None, chunksize=100000):
-            #for all rainy days with PRCP>990
-            for i,r in df.loc[(df["tag"]=='TMAX') & (df["value"]>300),("code","date")].iterrows():
-                if r[0] in codes:
-                    day=str(r[1])
-                    day=day[:4]+"-"+day[4:6]+"-"+day[6:]
-                    session.execute(upsert.format('H',r[0],day))
-            for i,r in df.loc[(df.tag=='AWND') & (df.value>32) ,("code","date")].iterrows():
-                if r[0] in codes:
-                    day=str(r[1])
-                    day=day[:4]+"-"+day[4:6]+"-"+day[6:]
-                    session.execute(upsert.format('W',r[0],day))
-            for i,r in df.loc[(df.tag=='SNOW') & (df.value>127) ,("code","date")].iterrows():
-                if r[0] in codes:
-                    day=str(r[1])
-                    day=day[:4]+"-"+day[4:6]+"-"+day[6:]
-                    session.execute(upsert.format('S',r[0],day))
-            for i,r in df.loc[(df.tag=='PRCP') & (df.value>990) ,("code","date")].iterrows():
-                if r[0] in codes:
-                    day=str(r[1])
-                    day=day[:4]+"-"+day[4:6]+"-"+day[6:]
-                    session.execute(upsert.format('R',r[0],day))
-    os.remove(file)
 
 
 cluster = Cluster()
