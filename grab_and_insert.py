@@ -33,7 +33,7 @@ def get_file(year):
             raise
     return year+'.csv'
 
-def grab_row_and_insert2(file,codes,session):
+def grab_row_and_insert(file,codes,session):
     upsert="UPDATE day_cat SET cat = '{}' WHERE code='{}' AND day='{}'"
     cols=["code","date","tag","value","gar1","gar2","gar3","gar4"]
     for df in pd.read_csv(file, names=cols,header = None, chunksize=100000):
@@ -64,4 +64,4 @@ def grab_row_and_insert2(file,codes,session):
 cluster = Cluster()
 session = cluster.connect('bigdata')
 for year in range(2010,2018):
-    grab_row_and_insert2(get_file(year),get_codes('<path>'),session)
+    grab_row_and_insert(get_file(year),get_codes('<path>'),session)
