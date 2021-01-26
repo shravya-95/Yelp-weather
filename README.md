@@ -11,9 +11,9 @@ Utilize [Yelp](https://www.yelp.com/dataset/documentation/main) and [NOAA weathe
 
 ## Datasets
 
-
+![](datasets.png)
 
 ## Why is this a BigData Problem?
 
-
+![](BigDataJustified.png)
 
